@@ -1,23 +1,29 @@
-import React from 'react';
-import { View } from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import React, { useEffect } from 'react';
+import { useNavigation } from '@react-navigation/core';
 import { AreaView } from '../../components/AreaView';
-import { Header } from '../../components/Header';
-import { useTheme } from '../../hooks/useTheme';
+import Search from '../../components/Search';
+import ListCharacter from '../../components/ListCharacter';
+import useCharacters from '../../hooks/useCharacters';
 
 export const Home = () => {
-  const { theme, isDarkMode } = useTheme();
+  const { navigate } = useNavigation();
+  const { listCharactesAPI, characters } = useCharacters();
+
+  const goToDetail = (item) => {
+    navigate('Details', item);
+  };
+
+  useEffect(() => {
+    listCharactesAPI();
+  }, []);
 
   return (
-    <AreaView theme={theme}>
-      {/* <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} /> */}
-      <View
-        style={{
-          backgroundColor: isDarkMode ? Colors.black : Colors.white,
-        }}
-      >
-        <Header>Header Lucas </Header>
-      </View>
+    <AreaView>
+      <Search />
+
+      {characters.length > 0 && (
+        <ListCharacter characters={characters} goToDetail={goToDetail} />
+      )}
     </AreaView>
   );
 };
