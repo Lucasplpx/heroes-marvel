@@ -2,7 +2,7 @@
 
 ## To set up file .env
 
-- **API_URL_MARVEL**=http://**\*\***
+- **API_URL**=http://**\*\***
 - **PUBLIC_KEY**=297e**\*\***
 - **PRIVATE_KEY**=12311**\*\***
 
@@ -20,3 +20,8 @@ yarn android
 ```bash
 adb reverse tcp:9090 tcp:9090
 ```
+
+# Video app
+
+https://user-images.githubusercontent.com/35532721/136699638-ef524655-7fc4-4065-9ed3-39b1393a7cd3.mp4
+
